@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head><title>Purchased</title></head>
+<body>
+<h1>Purchased Flowers</h1>
+<ul>
+{% for p in purchases %}
+<li>{{ p.name }} (${{ p.price }})</li>
+{% endfor %}
+</ul>
+<a href="/flowers">Back to Flowers</a>
+</body>
+</html>

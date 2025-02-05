@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head><title>Cart</title></head>
+<body>
+<h1>Cart</h1>
+{% if flower %}
+<p>{{ flower.name }} (${{ flower.price }})</p>
+<p>Total: ${{ total }}</p>
+<form action="/purchased" method="post">
+  <button type="submit">Purchase</button>
+</form>
+{% else %}
+<p>Cart is empty</p>
+{% endif %}
+<a href="/flowers">Back to Flowers</a>
+</body>
+</html>

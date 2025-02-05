@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "flowers"
+version = "0.1.0"
+description = ""
+authors = ["nurbolat <n.satybaldi2003@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = ">=3.10"
+fastapi = "^0.115.8"
+uvicorn = "^0.34.0"
+Jinja2 = "^3.1.5"
+python-multipart = "^0.0.20"
+psycopg2-binary = "^2.9.10"
+passlib = "^1.7.4"
+python-jose = {extras = ["cryptography"], version = "^3.3.0"}
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
