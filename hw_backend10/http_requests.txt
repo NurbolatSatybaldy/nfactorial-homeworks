@@ -1,0 +1,33 @@
+GET /index HTTP/1.0
+
+POST /api/login HTTP/1.0
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 30
+
+username=Alice&password=secret
+
+GET /home HTTP/1.1
+Host: example.com
+
+GET /data HTTP/1.1
+Host: example.com
+Accept: application/json
+
+POST /api/messages HTTP/1.1
+Host: example.com
+Content-Type: application/json
+Content-Length: 37
+
+{"username": "Alice", "msg": "Hello"}
+
+PUT /api/messages/42 HTTP/1.1
+Host: example.com
+Content-Type: text/plain
+Content-Length: 15
+
+Updated message
+
+DELETE /api/messages/42 HTTP/1.1
+Host: example.com
+
+
