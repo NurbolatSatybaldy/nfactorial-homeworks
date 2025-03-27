@@ -1,8 +1,15 @@
-from django.urls import path
-from news import views
+from django.conf import settings  # Add this line
+from django.contrib import admin
+from django.urls import path, include
 
 urlpatterns = [
-    path('news/', views.news_list, name='news_list'),  # List of news
-    path('news/<int:id>/', views.news_detail, name='news_detail'),  # Detail view of a single news
-    path('news/new/', views.news_create, name='news_create'),  # Form to create a new news
+    path('admin/', admin.site.urls),
+    path('news/', include('news.urls')),  # Include the news URLs
 ]
+
+# Only include the debug toolbar in debug mode
+if settings.DEBUG:
+    import debug_toolbar
+    urlpatterns = [
+        path('__debug__/', include(debug_toolbar.urls)),  # Add this line
+    ] + urlpatterns

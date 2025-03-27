@@ -8,14 +8,10 @@
 <body>
     <h1>News List</h1>
     <ul>
-        {% for article in news %}
-            <li>
-                <a href="{% url 'news_detail' article.id %}">{{ article.title }}</a> - {{ article.created_at }}
-            </li>
-        {% empty %}
-            <li>No news available</li>
+        {% for news_item in news %}
+        <li><a href="{% url 'news_detail' news_item.id %}">{{ news_item.title }}</a></li>
         {% endfor %}
     </ul>
-    <a href="{% url 'news_create' %}">Add New News</a>
+    <a href="{% url 'news_create' %}">Create New News</a>
 </body>
 </html>

@@ -8,7 +8,22 @@
 <body>
     <h1>{{ news.title }}</h1>
     <p>{{ news.content }}</p>
-    <p><strong>Created at:</strong> {{ news.created_at }}</p>
-    <a href="{% url 'news_list' %}">Back to News List</a>
+    <h2>Comments</h2>
+    <ul>
+        {% for comment in comments %}
+        <li>{{ comment.content }} - {{ comment.created_at }}</li>
+        {% empty %}
+        <li>No comments yet.</li>
+        {% endfor %}
+    </ul>
+
+    <h3>Add Comment</h3>
+    <form method="POST" action="{% url 'comment_create' news.id %}">
+        {% csrf_token %}
+        <textarea name="content" required></textarea>
+        <button type="submit">Submit</button>
+    </form>
+
+    <a href="{% url 'news_list' %}">Back to news list</a>
 </body>
 </html>
