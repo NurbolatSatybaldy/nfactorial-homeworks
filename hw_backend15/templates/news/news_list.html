@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>All News (Newest First)</h2>
+
+{% if user.is_authenticated %}
+<p><a href="{% url 'news_add' %}">+ Add News</a></p>
+{% endif %}
+
+{% if news %}
+<ul>
+{% for n in news %}
+    <li>
+        <a href="{% url 'news_detail' n.id %}">{{ n.title }}</a>
+        ({{ n.created_at }})
+    </li>
+{% endfor %}
+</ul>
+{% else %}
+<p>No news available.</p>
+{% endif %}
+{% endblock %}

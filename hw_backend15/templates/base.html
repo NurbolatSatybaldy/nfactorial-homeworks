@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Django News Service</title>
+</head>
+<body>
+    <nav>
+        <a href="{% url 'news_list' %}">Home</a>
+        {% if user.is_authenticated %}
+            | <a href="{% url 'logout' %}">Logout</a>
+        {% else %}
+            | <a href="{% url 'login' %}">Login</a>
+            | <a href="{% url 'sign_up' %}">Sign Up</a>
+        {% endif %}
+    </nav>
+    <hr>
+    {% block content %}{% endblock %}
+</body>
+</html>

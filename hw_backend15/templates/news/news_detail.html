@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>{{ news.title }}</h2>
+<p>{{ news.content }}</p>
+<p>Created at: {{ news.created_at }}</p>
+
+<!-- Edit button if can_edit_news -->
+{% if can_edit_news %}
+    <p><a href="{% url 'news_edit' news.id %}">Edit News</a></p>
+{% endif %}
+
+<!-- Delete button if can_delete_news -->
+{% if can_delete_news %}
+<form method="post" action="{% url 'news_delete' news.id %}">
+    {% csrf_token %}
+    <button type="submit">Delete News</button>
+</form>
+{% endif %}
+
+<hr>
+<h3>Comments</h3>
+{% if comments_info %}
+    <ul>
+    {% for c, can_del in comments_info %}
+        <li>
+            <p>{{ c.content }} - {{ c.author }} ({{ c.created_at }})</p>
+            {% if can_del %}
+                <form method="post" action="{% url 'comment_delete' c.id %}">
+                    {% csrf_token %}
+                    <button type="submit">Delete Comment</button>
+                </form>
+            {% endif %}
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No comments yet.</p>
+{% endif %}
+
+<hr>
+{% if user.is_authenticated %}
+    <form method="post">
+        {% csrf_token %}
+        <textarea name="content" placeholder="Add a comment"></textarea><br>
+        <button type="submit">Post Comment</button>
+    </form>
+{% else %}
+    <p>Доступно для авторизованных</p>
+{% endif %}
+{% endblock %}
