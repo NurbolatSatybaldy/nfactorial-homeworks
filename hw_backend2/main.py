@@ -65,6 +65,7 @@ def get_user(request: Request, id: int):
             return templates.TemplateResponse("users/detail.html", {"request": request, "user": u})
     return Response(content="Not found", status_code=status.HTTP_404_NOT_FOUND)
 
+
 if __name__ == "__main__":
     uvicorn.run(app, host="127.0.0.1", port=8000)
 

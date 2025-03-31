@@ -1,14 +1,14 @@
-<!-- templates/news/news_create.html -->
+<!-- templates/news/news_edit.html -->
 
 {% extends 'news/base.html' %}
 
-{% block title %}Create News{% endblock %}
+{% block title %}Edit News{% endblock %}
 
 {% block content %}
-    <h1>Create a new news</h1>
+    <h1>Edit News</h1>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Create</button>
+        <button type="submit">Update</button>
     </form>
 {% endblock %}

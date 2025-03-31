@@ -1,15 +1,10 @@
-from django.conf import settings  # Add this line
+# news_project/urls.py
+
 from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('news/', include('news.urls')),  # Include the news URLs
+    path('news/', include('news.urls')),  # Include news app URLs
+    path('accounts/', include('django.contrib.auth.urls')),  # Login, logout, password reset
 ]
-
-# Only include the debug toolbar in debug mode
-if settings.DEBUG:
-    import debug_toolbar
-    urlpatterns = [
-        path('__debug__/', include(debug_toolbar.urls)),  # Add this line
-    ] + urlpatterns

@@ -1,29 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ news.title }}</title>
-</head>
-<body>
-    <h1>{{ news.title }}</h1>
-    <p>{{ news.content }}</p>
+<!-- templates/news/news_detail.html -->
+
+{% extends 'news/base.html' %}
+
+{% block title %}{{ news_item.title }}{% endblock %}
+
+{% block content %}
+    <h1>{{ news_item.title }}</h1>
+    <p>{{ news_item.content }}</p>
+    <p>Created at: {{ news_item.created_at }}</p>
+
     <h2>Comments</h2>
     <ul>
         {% for comment in comments %}
-        <li>{{ comment.content }} - {{ comment.created_at }}</li>
-        {% empty %}
-        <li>No comments yet.</li>
+            <li>{{ comment.content }} - {{ comment.created_at }}</li>
         {% endfor %}
     </ul>
 
-    <h3>Add Comment</h3>
-    <form method="POST" action="{% url 'comment_create' news.id %}">
+    {% if user.is_authenticated %}
+    <h3>Post a Comment</h3>
+    <form method="post">
         {% csrf_token %}
-        <textarea name="content" required></textarea>
-        <button type="submit">Submit</button>
+        {{ form.as_p }}
+        <button type="submit">Post Comment</button>
     </form>
-
-    <a href="{% url 'news_list' %}">Back to news list</a>
-</body>
-</html>
+    {% else %}
+        <p>Only available to authenticated users</p>
+    {% endif %}
+{% endblock %}
